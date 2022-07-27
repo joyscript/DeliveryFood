@@ -1,2 +1,2 @@
 # DeliveryFood - training JS project
-https://joyscript.github.io/DeliveryFood/
+https://joyscript.github.io/DeliveryFood/dist/
