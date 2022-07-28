@@ -1,3 +1,5 @@
+import { openModalAuth } from './auth';
+
 export const partners = () => {
   const cardsContainer = document.querySelector('.cards-restaurants');
 
@@ -27,8 +29,13 @@ export const partners = () => {
 
     card.addEventListener('click', (e) => {
       e.preventDefault();
-      localStorage.setItem('restaurant', JSON.stringify(restaurant));
-      window.location = 'restaurant.html';
+
+      if (localStorage.getItem('user')) {
+        localStorage.setItem('restaurant', JSON.stringify(restaurant));
+        window.location = 'restaurant.html';
+      } else {
+        openModalAuth();
+      }
     });
   };
 
