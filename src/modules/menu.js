@@ -1,3 +1,5 @@
+export let products = [];
+
 export const menu = () => {
   const cardsContainer = document.querySelector('.cards-menu');
   const restaurant = JSON.parse(localStorage.getItem('restaurant'));
@@ -12,7 +14,7 @@ export const menu = () => {
   };
 
   const renderCard = (product) => {
-    const { name, description, price, image } = product;
+    const { id, name, description, price, image } = product;
 
     const card = document.createElement('div');
     card.classList.add('card');
@@ -27,7 +29,7 @@ export const menu = () => {
           <div class="ingredients">${description}</div>
         </div>
         <div class="card-buttons">
-          <button class="button button-primary button-add-cart">
+          <button class="button button-primary button-add-cart" data-id=${id}>
             <span class="button-card-text">В корзину</span>
             <span class="button-cart-svg"></span>
           </button>
@@ -38,6 +40,8 @@ export const menu = () => {
 
     cardsContainer.append(card);
   };
+
+  if (!localStorage.getItem('user')) window.location = 'index.html';
 
   if (restaurant) {
     updateHeading(restaurant);
@@ -54,7 +58,14 @@ export const menu = () => {
           throw new Error(`error: ${res.status} ${res.statusText}`);
         }
       })
-      .then((data) => data.forEach((product) => renderCard(product)))
+      .then((data) => {
+        data.forEach((product) => {
+          renderCard(product);
+
+          const { id, name, price } = product;
+          products.push({ id, name, price, count: 1 });
+        });
+      })
       .catch((err) => console.log(err.message));
   } else {
     window.location = 'index.html';

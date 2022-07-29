@@ -1,55 +1,55 @@
-const buttonAuth = document.querySelector('.button-auth');
-const buttonOut = document.querySelector('.button-out');
-const modalAuth = document.querySelector('.modal-auth');
-const userName = document.querySelector('.user-name');
-const logInForm = document.getElementById('logInForm');
-const login = logInForm.querySelector('#login');
-const password = logInForm.querySelector('#password');
-
-export const openModalAuth = () => {
-  modalAuth.style.display = 'flex';
-  document.addEventListener('click', closeModalAuth);
-};
-
-const closeModalAuth = (e) => {
-  if (e.target === modalAuth || e.target.classList.contains('close-auth') || e.type === 'submit') {
-    modalAuth.style.display = '';
-    document.removeEventListener('click', closeModalAuth);
-  }
-};
-
-const userLogIn = (name) => {
-  buttonAuth.style.display = 'none';
-  buttonOut.style.display = 'flex';
-  userName.style.display = 'block';
-  userName.textContent = name;
-};
-
-const userLogOut = () => {
-  buttonAuth.style.display = 'flex';
-  buttonOut.style.display = 'none';
-  userName.style.display = 'none';
-  userName.textContent = '';
-  localStorage.removeItem('user');
-  window.location = 'index.html';
-};
-
 export const auth = () => {
+  const buttonAuth = document.querySelector('.button-auth');
+  const buttonOut = document.querySelector('.button-out');
+  const buttonCart = document.querySelector('.button-cart');
+  const modalAuth = document.querySelector('.modal-auth');
+  const userName = document.querySelector('.user-name');
+  const logInForm = document.getElementById('logInForm');
+
+  const openModalAuth = () => modalAuth.classList.add('open');
+
+  const closeModalAuth = (e) => {
+    if (e.target === modalAuth || e.target.classList.contains('close-auth') || e.type === 'submit') {
+      modalAuth.classList.remove('open');
+    }
+  };
+
+  const userLogIn = (login) => {
+    buttonAuth.style.display = 'none';
+    buttonOut.style.display = 'flex';
+    buttonCart.style.display = 'flex';
+    userName.style.display = 'block';
+    userName.textContent = login;
+  };
+
+  const userLogOut = () => {
+    buttonAuth.style.display = 'flex';
+    buttonOut.style.display = '';
+    buttonCart.style.display = '';
+    userName.style.display = '';
+    userName.textContent = '';
+
+    localStorage.clear();
+    if (window.location.pathname === '/restaurant.html') window.location = 'index.html';
+  };
+
   if (localStorage.getItem('user')) {
     userLogIn(JSON.parse(localStorage.getItem('user')).login);
   }
 
   buttonAuth.addEventListener('click', openModalAuth);
+  modalAuth.addEventListener('click', closeModalAuth);
   buttonOut.addEventListener('click', userLogOut);
 
   logInForm.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (login.value && password.value) {
-      const user = { login: login.value, password: password.value };
-      localStorage.setItem('user', JSON.stringify(user));
-      closeModalAuth(e);
-      userLogIn(login.value);
-    }
+    const login = logInForm.querySelector('#login').value;
+    const password = logInForm.querySelector('#password').value;
+
+    localStorage.setItem('user', JSON.stringify({ login, password }));
+
+    closeModalAuth(e);
+    userLogIn(login);
   });
 };

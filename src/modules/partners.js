@@ -1,10 +1,8 @@
-import { openModalAuth } from './auth';
-
 export const partners = () => {
   const cardsContainer = document.querySelector('.cards-restaurants');
 
   const renderCard = (restaurant) => {
-    const { name, time_of_delivery, stars, price, kitchen, image, products } = restaurant;
+    const { name, time_of_delivery, stars, price, kitchen, image } = restaurant;
 
     const card = document.createElement('a');
     card.classList.add('card', 'card-restaurant');
@@ -34,7 +32,7 @@ export const partners = () => {
         localStorage.setItem('restaurant', JSON.stringify(restaurant));
         window.location = 'restaurant.html';
       } else {
-        openModalAuth();
+        document.querySelector('.modal-auth').classList.add('open');
       }
     });
   };
