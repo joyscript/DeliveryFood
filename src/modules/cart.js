@@ -34,6 +34,7 @@ export const cart = () => {
     cartArr = [];
     modalBody.innerHTML = '';
     modalSum.textContent = `0 ₽`;
+    sendBtn.classList.remove('open');
     modalCart.classList.remove('open');
     localStorage.removeItem('cart');
   };
@@ -62,6 +63,8 @@ export const cart = () => {
 
       modalBody.append(foodRow);
     });
+
+    sendBtn.classList.add('open');
 
     calculateSum();
   };
@@ -118,7 +121,7 @@ export const cart = () => {
     })
       .then((res) => {
         if (res.ok) {
-          modalBody.innerHTML = `<h3 class="card-title">Спасибо! Ваш заказ отправлен.`;
+          modalBody.innerHTML = `<h3 class="card-title">Спасибо за заказ! Мы скоро с вами свяжемся.`;
           setTimeout(clearCart, 3000);
         }
       })

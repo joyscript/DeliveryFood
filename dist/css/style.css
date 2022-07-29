@@ -828,3 +828,10 @@ button {
   margin-top: -34px;
   color: rgba(1, 1, 1, 0.3);
 }
+
+.button-send {
+  display: none;
+}
+.button-send.open {
+  display: flex;
+}
