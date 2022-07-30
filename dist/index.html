@@ -22,8 +22,8 @@
         <label class="address">
           <input type="text" class="input input-address" placeholder="Адрес доставки" />
         </label>
+        <div class="user-name"></div>
         <div class="buttons">
-          <span class="user-name"></span>
           <button class="button button-primary button-auth">
             <span class="button-auth-svg"></span>
             <span class="button-text">Войти</span>
@@ -135,7 +135,7 @@
       <!-- /.modal-dialog -->
     </div>
 
-    <div class="modal-auth">
+    <div class="modal modal-auth">
       <div class="modal-dialog modal-dialog-auth">
         <button class="close-auth">&times;</button>
         <form id="logInForm" method="post">
@@ -143,11 +143,11 @@
             <legend class="modal-title">Авторизация</legend>
             <label class="label-auth">
               <span>Логин</span>
-              <input id="login" name="login" type="text" required maxlength="20" />
+              <input id="login" name="login" type="text" required maxlength="12" placeholder="максимум 12 символов" />
             </label>
             <label class="label-auth">
               <span>Пароль</span>
-              <input id="password" name="password" type="password" required maxlength="20" />
+              <input id="password" name="password" type="password" required maxlength="12" placeholder="максимум 12 символов" />
             </label>
           </fieldset>
           <!-- /.modal-body -->
