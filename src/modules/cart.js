@@ -5,6 +5,8 @@ export const cart = () => {
   const buttonCart = document.querySelector('.button-cart');
   const modalCart = document.querySelector('.modal-cart');
   const modalBody = modalCart.querySelector('.modal-body');
+  const modalHeader = modalCart.querySelector('.modal-header');
+  const modalFooter = modalCart.querySelector('.modal-footer');
   const modalSum = modalCart.querySelector('.modal-pricetag');
   const clearBtn = modalCart.querySelector('.clear-cart');
   const sendBtn = modalCart.querySelector('.button-send');
@@ -69,6 +71,20 @@ export const cart = () => {
     calculateSum();
   };
 
+  const showMessage = (message) => {
+    modalBody.innerHTML = `<h2 class="card-title">${message}</h2>`;
+    modalHeader.classList.add('invisible');
+    modalFooter.classList.add('invisible');
+    document.body.classList.add('lock');
+
+    setTimeout(() => {
+      clearCart();
+      modalHeader.classList.remove('invisible');
+      modalFooter.classList.remove('invisible');
+      document.body.classList.remove('lock');
+    }, 2000);
+  };
+
   // --------------------------------
 
   if (localStorage.getItem('cart')) {
@@ -120,14 +136,10 @@ export const cart = () => {
       },
     })
       .then((res) => {
-        if (res.ok) {
-          modalBody.innerHTML = `<h3 class="card-title">Спасибо за заказ! Мы скоро с вами свяжемся.`;
-          setTimeout(clearCart, 3000);
-        }
+        if (res.ok) showMessage('Спасибо за заказ! Мы скоро с вами свяжемся.');
       })
       .catch((err) => {
-        modalBody.innerHTML = `<h3 class="card-title">Извините, невозможно оформить заказ.`;
-        setTimeout(clearCart, 3000);
+        showMessage('Извините, невозможно оформить заказ');
         console.log(err.message);
       });
   });
