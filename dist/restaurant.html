@@ -81,54 +81,86 @@
       </div>
     </footer>
 
-    <div class="modal modal-cart">
-      <div class="modal-dialog">
-        <div class="modal-header">
-          <h3 class="modal-title">Корзина</h3>
-          <button class="close">&times;</button>
-        </div>
-        <!-- /.modal-header -->
-        <div class="modal-body">
-          <!-- ! RENDER by JS! -->
-        </div>
-        <!-- /.modal-body -->
-        <div class="modal-footer">
-          <span class="modal-pricetag">0 ₽</span>
-          <div class="footer-buttons">
-            <button class="button button-primary button-send">Оформить заказ</button>
-            <button class="button clear-cart">Отмена</button>
-          </div>
-        </div>
-        <!-- /.modal-footer -->
-      </div>
-      <!-- /.modal-dialog -->
-    </div>
-
     <div class="modal modal-auth">
       <div class="modal-dialog modal-dialog-auth">
-        <button class="close-auth">&times;</button>
-        <form id="logInForm">
+        <button class="close close-auth">&times;</button>
+
+        <form id="logInForm" method="post">
           <fieldset class="modal-body">
             <legend class="modal-title">Авторизация</legend>
             <label class="label-auth">
               <span>Логин</span>
-              <input id="login" type="text" />
+              <input id="login" name="login" type="text" required maxlength="12" placeholder="максимум 12 символов" />
             </label>
             <label class="label-auth">
               <span>Пароль</span>
-              <input id="password" type="password" />
+              <input id="password" name="password" type="password" required maxlength="12" placeholder="максимум 12 символов" />
             </label>
           </fieldset>
-          <!-- /.modal-body -->
+
           <div class="modal-footer">
             <div class="footer-buttons">
               <button class="button button-primary button-login" type="submit">Войти</button>
             </div>
           </div>
         </form>
-        <!-- /.modal-footer -->
       </div>
-      <!-- /.modal-dialog -->
+    </div>
+
+    <div class="modal modal-cart">
+      <div class="modal-dialog">
+        <div class="modal-header">
+          <h3 class="modal-title">Корзина</h3>
+          <button class="close">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <!-- ! RENDER by JS! -->
+        </div>
+
+        <div class="modal-footer">
+          <span class="modal-pricetag">0 ₽</span>
+          <div class="footer-buttons">
+            <button class="button button-primary button-order">Оформить заказ</button>
+            <button class="button button-clear-cart">Отмена</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal modal-info">
+      <div class="modal-dialog modal-dialog-info">
+        <button class="close close-info">&times;</button>
+
+        <form id="infoForm" method="post">
+          <fieldset class="modal-body">
+            <legend class="modal-title">Информация <span class="modal-add-title">для заказа</span></legend>
+            <label class="label-info">
+              <span>Ваше имя</span>
+              <input id="info-login" name="name" type="text" required />
+            </label>
+            <label class="label-info">
+              <span>Ваш телефон</span>
+              <input id="info-phone" name="phone" type="tel" pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}" required placeholder="Формат: 123-45-67" />
+            </label>
+            <label class="label-info">
+              <span>Адрес доставки</span>
+              <input id="info-address" name="address" type="text" required />
+            </label>
+            <label class="label-info">
+              <span>Удобное время доставки</span>
+              <input id="info-time" name="time" type="text" />
+            </label>
+          </fieldset>
+
+          <div class="modal-footer">
+            <div class="footer-buttons">
+              <button class="button button-primary button-send">Отправить</button>
+              <button class="button button-clear-info">Очистить</button>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </body>
 </html>

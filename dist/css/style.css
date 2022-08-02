@@ -416,6 +416,7 @@ button {
 }
 
 .modal-dialog {
+  position: relative;
   width: 100%;
   max-width: 780px;
   max-height: 100%;
@@ -427,7 +428,6 @@ button {
 
 .modal-dialog-auth {
   width: auto;
-  position: relative;
 }
 
 .label-auth {
@@ -438,6 +438,26 @@ button {
 .label-auth span {
   width: 80px;
   display: inline-block;
+}
+
+.label-auth input,
+.label-info input {
+  padding: 3px 5px;
+}
+
+.label-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: 30px 10px;
+}
+
+.label-info span {
+  flex-basis: 130px;
+}
+
+.label-info input {
+  flex-grow: 1;
 }
 
 .modal-header {
@@ -451,7 +471,6 @@ button {
   margin: 0;
   font-weight: bold;
   font-size: 36px;
-  line-height: 42px;
 }
 
 .close {
@@ -460,10 +479,8 @@ button {
   background-color: transparent;
 }
 
-.close-auth {
-  font-size: 36px;
-  border: none;
-  background-color: transparent;
+.close-auth,
+.close-info {
   position: absolute;
   top: 10px;
   right: 20px;
@@ -533,12 +550,12 @@ button {
 .modal-footer {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   margin-top: 40px;
 }
 
-.modal-auth .modal-footer {
-  justify-content: flex-end;
+.modal-cart .modal-footer {
+  justify-content: space-between;
 }
 
 .footer-buttons {
@@ -797,23 +814,34 @@ button {
   }
 
   .modal-dialog {
-    padding: 40px 25px 25px;
+    padding: 45px 20px 25px;
+  }
+
+  .modal-message .modal-dialog {
+    padding: 50px 20px;
   }
 
   .modal-title {
     font-size: 30px;
   }
 
-  .label-auth {
+  .label-auth,
+  .label-info {
     margin: 30px 3px;
   }
 
-  .label-auth input {
+  .label-auth input,
+  .label-info input {
     width: 100%;
   }
 
-  .label-auth span {
-    margin-bottom: 10px;
+  .label-auth span,
+  .label-info span {
+    margin-bottom: 5px;
+  }
+
+  .label-info span {
+    flex-basis: auto;
   }
 
   .modal-cart .modal-dialog {
@@ -905,12 +933,18 @@ button {
   }
 
   .modal-pricetag,
-  .button-send,
+  .button-order,
   .clear-cart {
     height: 50px;
     padding: 5px 10px;
     font-size: 16px;
     line-height: 1.1;
+  }
+}
+
+@media (max-width: 400px) {
+  .modal-add-title {
+    display: none;
   }
 }
 
@@ -928,7 +962,7 @@ button {
     font-size: 14px;
   }
   .modal-pricetag,
-  .button-send,
+  .button-order,
   .clear-cart {
     font-size: 14px;
   }
@@ -946,24 +980,24 @@ button {
   height: auto;
 }
 
-.button-send {
+.button-order {
   display: none;
 }
 
-.button-send.open {
+.button-order.open {
   display: flex;
 }
 
-.label-auth input {
-  padding: 3px 5px;
+legend {
+  padding: 0 2px;
 }
 
-.label-auth input::placeholder {
-  font-size: 14px;
-}
-
-.label-auth input:focus::placeholder {
+input:focus::placeholder {
   opacity: 0;
+}
+
+.modal input::placeholder {
+  font-size: 14px;
 }
 
 .restaurants {
@@ -980,4 +1014,8 @@ button {
 
 .invisible {
   opacity: 0;
+}
+
+.modal-message .modal-title {
+  text-align: center;
 }
