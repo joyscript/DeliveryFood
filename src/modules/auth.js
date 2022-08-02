@@ -30,7 +30,7 @@ export const auth = () => {
     userName.textContent = '';
 
     localStorage.clear();
-    if (window.location.pathname === '/restaurant.html') window.location = 'index.html';
+    if (window.location.href.slice(-10) !== 'index.html') window.location = 'index.html';
   };
 
   if (localStorage.getItem('user')) {

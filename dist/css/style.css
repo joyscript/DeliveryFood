@@ -825,9 +825,12 @@ button {
     font-size: 30px;
   }
 
-  .label-auth,
-  .label-info {
+  .label-auth {
     margin: 30px 3px;
+  }
+
+  .label-info {
+    margin: 15px 3px;
   }
 
   .label-auth input,
@@ -908,7 +911,7 @@ button {
   }
 
   .modal-cart .modal-dialog {
-    padding: 20px;
+    padding: 20px 20px 30px;
   }
 
   .modal-header {
@@ -934,7 +937,7 @@ button {
 
   .modal-pricetag,
   .button-order,
-  .clear-cart {
+  .button-clear-cart {
     height: 50px;
     padding: 5px 10px;
     font-size: 16px;
@@ -963,7 +966,7 @@ button {
   }
   .modal-pricetag,
   .button-order,
-  .clear-cart {
+  .button-clear-cart {
     font-size: 14px;
   }
 }
